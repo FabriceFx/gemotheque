@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GemLab | La bibliothèque de Gems</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">✦ GemLab</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Annuaire</a></li>
+                <li><a href="#" class="cta">Ajouter +</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Trouvez le Gem parfait.</h1>
+        <p>Explorez notre collection d'assistants Gemini personnalisés pour booster votre productivité, votre code ou votre créativité.</p>
+        
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Que cherchez-vous ? (ex: Python, Marketing...)">
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <div class="filters">
+            <button class="filter-btn active">Tout voir</button>
+            <button class="filter-btn">Productivité</button>
+            <button class="filter-btn">Développement</button>
+            <button class="filter-btn">Rédaction</button>
+            <button class="filter-btn">Loisirs</button>
+        </div>
+
+        <div class="grid" id="gem-grid"></div>
+
+    </div>
+
+    <footer>
+        <p><strong>GemLab.fr</strong> &copy; 2025</p>
+        <p>Ce site est un projet communautaire non affilié à Google Gemini.</p>
+    </footer>
+
+    <script src="data.js"></script>
+
+    <script>
+        // --- A. INITIALISATION ---
+        const grid = document.getElementById('gem-grid');
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // État par défaut
+        let currentFilter = 'Tout voir';
+        let currentSearch = '';
+
+        // --- B. FONCTION D'AFFICHAGE ---
+        function renderGems() {
+            // 1. On vide la grille
+            grid.innerHTML = "";
+            let found = false;
+
+            // 2. On vérifie si data.js est bien chargé
+            if (typeof gemsData === 'undefined') {
+                grid.innerHTML = "<p style='color:red; text-align:center;'>Erreur : data.js introuvable.</p>";
+                return;
+            }
+
+            // 3. Boucle sur chaque Gem
+            for (const key in gemsData) {
+                const gem = gemsData[key];
+                
+                // --- FILTRAGE ---
+                // Est-ce que le filtre correspond ? (Soit 'Tout voir', soit la catégorie exacte)
+                const matchCategory = (currentFilter === 'Tout voir' || gem.category === currentFilter);
+                
+                // Est-ce que la recherche correspond ? (Titre ou Description)
+                const searchTextLower = currentSearch.toLowerCase();
+                const matchSearch = gem.title.toLowerCase().includes(searchTextLower) || 
+                                    gem.desc.toLowerCase().includes(searchTextLower);
+
+                // Si les deux conditions sont réunies, on affiche
+                if (matchCategory && matchSearch) {
+                    found = true;
+                    const html = `
+                        <article class="card">
+                            <div>
+                                <div class="card-icon">${gem.icon}</div>
+                                <h3>${gem.title}</h3>
+                                <p>${gem.desc}</p>
+                                <div class="tags"><span class="tag">${gem.category}</span></div>
+                            </div>
+                            <a href="fiche-gem.html?id=${key}" class="btn-link">Voir le détail →</a>
+                        </article>
+                    `;
+                    grid.innerHTML += html;
+                }
+            }
+
+            // 4. Gestion du cas "Aucun résultat"
+            if (!found) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #666; margin-top: 30px;">
+                    Aucun Gem ne correspond à votre recherche... 🕵️‍♀️
+                </p>`;
+            }
+        }
+
+        // --- C. ÉCOUTEURS D'ÉVÉNEMENTS ---
+
+        // 1. Barre de recherche (se déclenche à chaque lettre tapée)
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderGems();
+        });
+
+        // 2. Boutons de filtre
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Gestion visuelle des boutons (Active / Inactive)
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Mise à jour du filtre et ré-affichage
+                currentFilter = btn.innerText;
+                renderGems();
+            });
+        });
+
+        // --- D. DÉMARRAGE ---
+        // On lance l'affichage une première fois au chargement de la page
+        renderGems();
+
+    </script>
+
+</body>
+</html>
