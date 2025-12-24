@@ -1,8 +1,10 @@
 # Gemotheque (GemLab)
 
 ![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![Platform](https://img.shields.io/badge/Platform-Google%20Apps%20Script-green)
-![Runtime](https://img.shields.io/badge/Google%20Apps%20Script-V8-green)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Hosting](https://img.shields.io/badge/Hosted_on-GitHub_Pages-black?logo=github)
 ![Author](https://img.shields.io/badge/Auteur-Fabrice%20Faucheux-orange)
 
 **La bibliothèque communautaire d'assistants Gemini personnalisés.**
