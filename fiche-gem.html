@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du Gem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">✦ GemLab</a>
+        <nav><ul><li><a href="index.html">Annuaire</a></li></ul></nav>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">← Retour à l'annuaire</a>
+        </div>
+
+        <div class="gem-header">
+            <span class="gem-icon" id="d-icon"></span>
+            <h1 id="d-title">Chargement...</h1>
+            <p id="d-desc"></p>
+            <a href="#" class="gem-btn" id="d-link">Ouvrir dans Gemini ↗</a>
+        </div>
+
+        <div class="content-box">
+            <h2>À quoi ça sert ?</h2>
+            <p id="d-fullDesc"></p>
+        </div>
+
+        <div class="content-box">
+            <h2>Exemple de Prompt</h2>
+            <div class="prompt-box" id="d-prompt"></div>
+        </div>
+
+        <div class="content-box">
+            <h2>Infos</h2>
+            <ul>
+                <li><strong>Catégorie :</strong> <span id="d-cat"></span></li>
+                <li><strong>Auteur :</strong> <span id="d-author"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        // 1. On récupère l'ID dans l'URL (ex: ?id=python-debugger)
+        const params = new URLSearchParams(window.location.search);
+        const gemId = params.get('id');
+
+        // 2. On cherche les infos dans notre fichier data.js
+        const gem = gemsData[gemId];
+
+        // 3. Si le Gem existe, on remplit la page
+        if (gem) {
+            document.title = gem.title + " - GemLab";
+            document.getElementById('d-icon').innerText = gem.icon;
+            document.getElementById('d-title').innerText = gem.title;
+            document.getElementById('d-desc').innerText = gem.desc;
+            document.getElementById('d-fullDesc').innerText = gem.fullDesc;
+            document.getElementById('d-prompt').innerText = gem.prompt;
+            document.getElementById('d-cat').innerText = gem.category;
+            document.getElementById('d-author').innerText = gem.author;
+        } else {
+            // Si l'ID n'existe pas ou est vide
+            document.querySelector('.container').innerHTML = "<h1>Gem introuvable 😕</h1><p><a href='index.html'>Retour à l'accueil</a></p>";
+        }
+    </script>
+
+</body>
+</html>
