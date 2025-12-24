@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposer un Gem - GemLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">✦ GemLab</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Annuaire</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="hero" style="padding: 40px 20px; background: none;">
+            <h1>Proposer un Gem</h1>
+            <p>Vous avez créé un prompt incroyable ? Partagez-le avec la communauté.</p>
+        </div>
+
+        <div class="form-box">
+            <form id="addGemForm">
+                
+                <div class="form-group">
+                    <label for="titre">Nom du Gem</label>
+                    <input type="text" id="titre" placeholder="Ex: Correcteur Ortho" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie">
+                        <option value="Productivité">Productivité</option>
+                        <option value="Développement">Développement</option>
+                        <option value="Rédaction">Rédaction</option>
+                        <option value="Loisirs">Loisirs</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="icon">Icône (Emoji)</label>
+                    <input type="text" id="icon" placeholder="Ex: 🚀" maxlength="2">
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Description courte (Une phrase)</label>
+                    <input type="text" id="desc" placeholder="Ce qu'il fait en quelques mots..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullDesc">Description détaillée & Explications</label>
+                    <textarea id="fullDesc" placeholder="Expliquez comment l'utiliser et à qui il s'adresse."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="prompt">Le Prompt (La recette magique)</label>
+                    <textarea id="prompt" placeholder="Collez le prompt exact ici..." required style="font-family: monospace;"></textarea>
+                    <span class="form-hint">C'est la partie la plus importante !</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Votre Nom / Pseudo</label>
+                    <input type="text" id="author" placeholder="Ex: JediMaster" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Envoyer la proposition 📨</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 GemLab.fr</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('addGemForm');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêche le rechargement de la page
+
+            // 1. Récupération des valeurs
+            const titre = document.getElementById('titre').value;
+            const categorie = document.getElementById('categorie').value;
+            const desc = document.getElementById('desc').value;
+            const prompt = document.getElementById('prompt').value;
+            const author = document.getElementById('author').value;
+
+            // 2. Création du corps de l'email
+            const subject = encodeURIComponent(`Proposition de Gem: ${titre}`);
+            const body = encodeURIComponent(
+`Bonjour GemLab,
+
+Voici une proposition de nouveau Gem :
+
+- Titre : ${titre}
+- Catégorie : ${categorie}
+- Auteur : ${author}
+
+DESCRIPTION :
+${desc}
+
+PROMPT :
+${prompt}
+
+Merci !`
+            );
+
+            // 3. Ouverture du client mail (Mailto)
+            // Remplacez 'votre-email@gmail.com' par votre vraie adresse pour tester
+            window.location.href = `mailto:votre-email@gmail.com?subject=${subject}&body=${body}`;
+            
+            alert("Merci ! Votre client mail va s'ouvrir pour envoyer la proposition.");
+        });
+    </script>
+
+</body>
+</html>
