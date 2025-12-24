@@ -68,6 +68,7 @@
             document.getElementById('d-prompt').innerText = gem.prompt;
             document.getElementById('d-cat').innerText = gem.category;
             document.getElementById('d-author').innerText = gem.author;
+            document.getElementById('d-link').href = gem.url;
         } else {
             // Si l'ID n'existe pas ou est vide
             document.querySelector('.container').innerHTML = "<h1>Gem introuvable 😕</h1><p><a href='index.html'>Retour à l'accueil</a></p>";
