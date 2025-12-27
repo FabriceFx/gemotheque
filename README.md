@@ -76,5 +76,3 @@ Créez un onglet nommé exactement **`Gems`** avec les colonnes suivantes (ordre
 ## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
-
-**Copyright (c) 2025 Fabrice Faucheux**
