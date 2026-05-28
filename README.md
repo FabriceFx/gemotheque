@@ -1,5 +1,8 @@
 # Gemotheque (GemLab)
 
+
+[🇫🇷 Version Française](#-version-française) | [🇬🇧 English Version](#-english-version)
+
 ![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Google%20Apps%20Script-green)
 ![Runtime](https://img.shields.io/badge/Google%20Apps%20Script-V8-green)
@@ -7,6 +10,9 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Author](https://img.shields.io/badge/Auteur-Fabrice%20Faucheux-orange)
+
+## 🇫🇷 Version Française
+
 
 **La bibliothèque communautaire d'assistants Gemini personnalisés.**
 
@@ -76,3 +82,12 @@ Créez un onglet nommé exactement **`Gems`** avec les colonnes suivantes (ordre
 ## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+
+---
+## 🇬🇧 English Version
+
+> English translation coming soon.
+
+---
+<p align="center"><a href="https://faucheux.bzh" target="_blank" style="color: inherit; text-decoration: none;">&lt;&gt; par Fabrice Faucheux</a></p>
